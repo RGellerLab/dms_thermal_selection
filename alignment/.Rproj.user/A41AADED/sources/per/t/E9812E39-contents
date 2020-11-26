@@ -1,0 +1,68 @@
+library(Biostrings)
+# library(muscle)
+######
+library(DECIPHER)
+# nuc=readDNAStringSet("./10-28/EntAfullgenome/673860197465-EntAfullgenome.fasta")
+# nuc=readDNAStringSet("./10-28/EntBfullgenome/900928188168-EntBfullgenome.fasta")
+# nuc=readDNAStringSet("./10-28/EntCfullgenome/994291823892-EntCfullgenome.fasta")
+# nuc=readDNAStringSet("./10-28/EntDfullgenome/264387251703-EntDfullgenome.fasta")
+nuc=readDNAStringSet("../alignment/10-28-19/CVB3fullgenome/cds_cvb3_fullgenome10-28.fasta")
+# nuc=readDNAStringSet("../alignment/10-28-19/CVBsfullgenome/cds_all_cvbs_10-28.fasta")
+nuc=nuc[grep("polyprotein",names(nuc),ignore.case = T)] ## only need if download cds
+nancy=readDNAStringSet("../cds_cvb3.txt")
+nancy=nancy[1]
+nuc=c(nancy, #puts nancy on top
+      nuc)#[-grep("nancy",names(nuc),ignore.case = T)]) 
+
+aa=translate(nuc,no.init.codon = T,if.fuzzy.codon = "X")
+
+# width(nuc)
+
+rm(nuc,nancy)
+
+
+aas=AlignSeqs(aa)
+cut=(min(start(vmatchPattern("----------------------------------------------------------",aas[1])))-1)
+aa_align=subseq(aas,start = 1,end=cut)
+# writeXStringSet(aa_align,"./CVBs_AA.fa")
+# writeXStringSet(aa_align,"./CVB3_AA.fa")
+res=as.matrix(aa_align)
+#rm gaps
+gaps=grep("-",res[1,])
+if (length(gaps)>1){res=res[,-gaps]}
+
+## rm our cvb3 used to align and remove gaps
+res=res[-1,]
+
+## rm cvs if watned
+# res=res[!grepl("coxsackievirus",rownames(res),ignore.case = T),]
+
+##### shannon entropy
+shannon.entropy <- function(p)
+{
+  if (min(p) < 0 || sum(p) <= 0)
+    return(NA)
+  p.norm <- p[p>0]/sum(p)
+  -sum(log(p.norm)*p.norm)
+}
+
+ent=apply(res,2,function(x) shannon.entropy(table(x)))
+hist(ent,breaks=100)
+
+# write.csv(ent,"./10-28/entA-D_aa_ent_nancy_coordinates/A_noCV.csv",row.names = F)
+# write.csv(ent,"./10-28/entA-D_aa_ent_nancy_coordinates/B_noCV.csv",row.names = F)
+# write.csv(ent,"./10-28/entA-D_aa_ent_nancy_coordinates/C_noCV.csv",row.names = F)
+# write.csv(ent,"./10-28/entA-D_aa_ent_nancy_coordinates/D_noCV.csv",row.names = F)
+# write.csv(ent,"../alignment/10-28-19/cvb3_aa_ent_nancy_coordinates.csv",row.names = F)
+write.csv(ent,"../alignment/10-28-19/cvbs_aa_ent_nancy_coordinates.csv",row.names = F)
+######
+a=read.csv("../alignment/10-28-19/entA-D_aa_ent_nancy_coordinates/A_noCV.csv")
+b=read.csv("../alignment/10-28-19/entA-D_aa_ent_nancy_coordinates/B_noCV.csv")
+c=read.csv("../alignment/10-28-19/entA-D_aa_ent_nancy_coordinates/C_noCV.csv")
+d=read.csv("../alignment/10-28-19/entA-D_aa_ent_nancy_coordinates/D_noCV.csv")
+cvb3s=read.csv("../alignment/10-28-19/entA-D_aa_ent_nancy_coordinates/D_noCV.csv")
+cvbs=read.csv("../alignment/10-28-19/entA-D_aa_ent_nancy_coordinates/D_noCV.csv")
+df=data.frame(a$x,b$x,c$x,d$x,cvb3s$x,cvbs$x)
+colnames(df)=tolower(c("Ent_A","Ent_B","Ent_C","Ent_D","cvb3s","cvbs"))
+# write.csv(df,"./10-28/entA-D_aa_ent_nancy_coordinates/mapped_cvb3position_entropy_no_cv.csv",row.names = F)
+write.csv(df,"../alignment/10-28-19/mapped_cvb3position_entropy.csv",row.names = F)

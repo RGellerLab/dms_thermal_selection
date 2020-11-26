@@ -1,0 +1,24 @@
+{
+    "id": "A3E4FB58",
+    "path": "C:/Users/gelro/Dropbox/LAB/papers/thermal_resistance/GITHUB_termal_resistance/codon_tables/scripts/pipeline_samples.R",
+    "project_path": "pipeline_samples.R",
+    "type": "r_source",
+    "hash": "3955030051",
+    "contents": "",
+    "dirty": false,
+    "created": 1606199462673.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "40,0",
+        "scrollLine": "7"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1606199567,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1606199567610,
+    "read_only": false,
+    "read_only_alternatives": []
+}

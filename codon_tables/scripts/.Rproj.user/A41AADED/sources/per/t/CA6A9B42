@@ -1,0 +1,24 @@
+{
+    "id": "CA6A9B42",
+    "path": "C:/Users/Ron Geller/Dropbox/LAB/papers/thermal_resistance/codon_tables/scripts/pipeline_samples.R",
+    "project_path": "pipeline_samples.R",
+    "type": "r_source",
+    "hash": "3825175643",
+    "contents": "",
+    "dirty": false,
+    "created": 1603358885329.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "38,0",
+        "scrollLine": "5"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1600354331,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1600354331,
+    "read_only": false,
+    "read_only_alternatives": []
+}

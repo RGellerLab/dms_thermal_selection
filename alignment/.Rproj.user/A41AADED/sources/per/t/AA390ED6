@@ -1,0 +1,25 @@
+{
+    "id": "AA390ED6",
+    "path": "C:/Users/Ron Geller/Dropbox/LAB/papers/thermal_resistance/GITHUB_termal_resistance/alignment/calculate_entropy.R",
+    "project_path": "calculate_entropy.R",
+    "type": "r_source",
+    "hash": "169985446",
+    "contents": "",
+    "dirty": false,
+    "created": 1606390972807.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "16,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1606401760,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1606401760204,
+    "read_only": false,
+    "read_only_alternatives": []
+}
